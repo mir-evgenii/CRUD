@@ -1,9 +1,17 @@
 <?php
 
-function __autoload($className) {
+phpinfo();
+
+function autoloadController($className) {
     $className = str_replace("..", "", $className);
     require_once("controllers/$className.php");
 }
+
+function autoloadModel($className) {
+    $className = str_replace("..", "", $className);
+    require_once("models/$className.php");
+}
+
 
 
 if ($GLOBALS['_GET'] != null) {
@@ -19,7 +27,9 @@ if ($GLOBALS['_GET'] != null) {
 
 $controller = $controller.'Controller';
 
+spl_autoload_register('autoloadController');
 $controller = new $controller;
+
 
 $controller->$method();
 
