@@ -1,7 +1,5 @@
 <?php
 
-phpinfo();
-
 function autoloadController($className) {
     $className = str_replace("..", "", $className);
     require_once("controllers/$className.php");
@@ -11,8 +9,6 @@ function autoloadModel($className) {
     $className = str_replace("..", "", $className);
     require_once("models/$className.php");
 }
-
-
 
 if ($GLOBALS['_GET'] != null) {
     $get = $GLOBALS["_GET"];
@@ -30,7 +26,4 @@ $controller = $controller.'Controller';
 spl_autoload_register('autoloadController');
 $controller = new $controller;
 
-
 $controller->$method();
-
-
